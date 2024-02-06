@@ -5,11 +5,11 @@ const dbSettings = require('./db_settings.json');
 
 // Create a pool of connections
 const pool = new Pool({
-    user: dbSettings.user,
-    host: dbSettings.host,
-    database: dbSettings.database,
-    password: dbSettings.password,
-    port: dbSettings.port,
+    user: process.env.DB_USER || dbSettings.user,
+    host: process.env.DB_HOST || dbSettings.host,
+    database: process.env.DB_NAME || dbSettings.database,
+    password: process.env.DB_PWD || dbSettings.password,
+    port: process.env.DB_PORT ||dbSettings.port,
     ssl: {
         rejectUnauthorized: false, // Set to true if you have a valid CA certificate
     },
