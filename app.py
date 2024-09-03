@@ -1,9 +1,12 @@
 from flask import Flask
-
-app = Flask(__name__)
-
+from flask_cors import CORS
+import psycopg2.extras
 import psycopg2
 import os
+
+app = Flask(__name__)
+CORS(app)
+
 # Get the PostgreSQL connection details from environment variables
 host = os.environ.get("DB_HOST")
 port = os.environ.get("DB_PORT")
@@ -17,7 +20,9 @@ conn = psycopg2.connect(
     port=port,
     database=database,
     user=user,
-    password=password
+    password=password,
+    # convert the result to a dictionary
+    cursor_factory=psycopg2.extras.RealDictCursor
 )
 
 # Rest of the code...
