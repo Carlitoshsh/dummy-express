@@ -1,3 +1,7 @@
+from flask import Flask
+
+app = Flask(__name__)
+
 import psycopg2
 import os
 # Get the PostgreSQL connection details from environment variables
@@ -25,9 +29,13 @@ cur.execute("SELECT * FROM students")
 # Fetch all the rows returned by the query
 rows = cur.fetchall()
 
-# Print the results
-for row in rows:
-    print(row)
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+@app.route('/students')
+def get_students():
+    return rows
 
 # Close the cursor and the connection
 cur.close()
