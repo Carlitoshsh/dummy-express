@@ -14,16 +14,7 @@ database = os.environ.get("DB_NAME")
 user = os.environ.get("DB_USER")
 password = os.environ.get("DB_PWD")
 
-# Establish a connection to the PostgreSQL database
-conn = psycopg2.connect(
-    host=host,
-    port=port,
-    database=database,
-    user=user,
-    password=password,
-    # convert the result to a dictionary
-    cursor_factory=psycopg2.extras.RealDictCursor
-)
+
 
 
 
@@ -34,6 +25,16 @@ def hello_world():
 
 @app.route('/students')
 def get_students():
+    # Establish a connection to the PostgreSQL database
+    conn = psycopg2.connect(
+        host=host,
+        port=port,
+        database=database,
+        user=user,
+        password=password,
+        # convert the result to a dictionary
+        cursor_factory=psycopg2.extras.RealDictCursor
+    )
     # Rest of the code...
     cur = conn.cursor()
     # Execute a query on the "students" table
