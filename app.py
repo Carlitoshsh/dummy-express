@@ -40,7 +40,7 @@ def create_student():
 
     # Perform any necessary validation on the data
     if check_if_student_exists(student_id):
-        return 'Student already exists', 400
+        return { 'message': 'Student already exists' }, 400
 
     # Establish a connection to the PostgreSQL database
     connect(
@@ -48,7 +48,7 @@ def create_student():
         (student_id, name, age, email),
         'update'
     )
-    return 'Student created successfully', 201
+    return { 'message': 'Student created successfully' }, 201
 
 def check_if_student_exists(student_id):
     # Establish a connection to the PostgreSQL database
