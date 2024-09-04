@@ -25,8 +25,7 @@ conn = psycopg2.connect(
     cursor_factory=psycopg2.extras.RealDictCursor
 )
 
-# Rest of the code...
-cur = conn.cursor()
+
 
 
 @app.route('/')
@@ -35,6 +34,8 @@ def hello_world():
 
 @app.route('/students')
 def get_students():
+    # Rest of the code...
+    cur = conn.cursor()
     # Execute a query on the "students" table
     cur.execute("SELECT * FROM students")
 
