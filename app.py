@@ -43,8 +43,8 @@ def get_students():
     # Fetch all the rows returned by the query
     rows = cur.fetchall()
     cur.close()
+    # Close the cursor and the connection
+    conn.close()
 
     return rows
 
-# Close the cursor and the connection
-conn.close()
