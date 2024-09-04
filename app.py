@@ -28,18 +28,19 @@ conn = psycopg2.connect(
 # Rest of the code...
 cur = conn.cursor()
 
-# Execute a query on the "students" table
-cur.execute("SELECT * FROM students")
-
-# Fetch all the rows returned by the query
-rows = cur.fetchall()
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return '<h2>Hello, World!</h2>'
 
 @app.route('/students')
 def get_students():
+    # Execute a query on the "students" table
+    cur.execute("SELECT * FROM students")
+
+    # Fetch all the rows returned by the query
+    rows = cur.fetchall()
+
     return rows
 
 # Close the cursor and the connection
